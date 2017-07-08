@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cidades</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+	<h:form id="listagem">
+		<p:panel header="Cidades - Listagem">
+
+			<p:dataTable id="tabela" paginator="true" rows="5"
+				emptyMessage="Nenhum registro encontrado!"
+				value="#{cidadeBean.cidades}" var="cidade">
+				<f:facet name="footer">
+					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+						actionListener="#{cidadeBean.novo}"
+						update=":formCadastro:pnlCadastro" />
+
+					<p:commandButton value="Imprimir" />
+				</f:facet>
+
+				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash" />
+
+					<p:commandButton icon="ui-icon-pencil" />
+
+				</p:column>
+
+				<p:column headerText="Nome" filterBy="#{cidade.nome}"
+					sortBy="#{cidade.nome}">
+					<h:outputText value="#{cidade.nome}" />
+				</p:column>
+
+				<p:column headerText="Estado" filterBy="#{cidade.estado.nome}"
+					sortBy="#{cidade.estado.nome}">
+					<h:outputText value="#{cidade.estado.nome}" />
+				</p:column>
+
+				<p:column headerText="CEP" filterBy="#{cidade.cep}"
+					sortBy="#{cidade.cep}">
+					<h:outputText value="#{cidade.cep}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:dialog header="Cidade - Cadastro" modal="true" draggable="false"
+		resizable="false" widgetVar="dialogo">
+		<h:form id="formCadastro">
+			<h:panelGrid id="pnlCadastro" columns="2" cellpadding="5">
+				<p:outputLabel value="Nome:" />
+				<p:inputText maxlength="50" size="30"
+					value="#{cidadeBean.cidade.nome}" />
+
+				<p:outputLabel value="Estado:" />
+				<p:selectOneMenu filter="true" effect="highlight" />
+
+				<p:outputLabel value="CEP:" />
+				<p:inputNumber maxlength="8" size="8"
+					value="#{cidadeBean.cidade.cep}" />
+
+				<p:outputLabel value="Código IBGE:" />
+				<p:inputNumber maxlength="7" size="7"
+					value="#{cidadeBean.cidade.ibge}" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton value="Salvar" icon="ui-icon-circle-check" />
+
+				<p:commandButton value="Fechar" icon="ui-icon-circle-close" />
+
+			</h:panelGrid>
+
+
+		</h:form>
+
+
+	</p:dialog>
+
+
+
+
+</h:body>
+</html>
+
