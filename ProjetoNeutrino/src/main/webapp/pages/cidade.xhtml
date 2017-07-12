@@ -17,11 +17,12 @@
 				emptyMessage="Nenhum registro encontrado!"
 				value="#{cidadeBean.cidades}" var="cidade">
 				<f:facet name="footer">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+					<p:commandButton value="Novo" icon="ui-icon-circle-plus"
+						oncomplete="PF('dialogo').show();"
 						actionListener="#{cidadeBean.novo}"
 						update=":formCadastro:pnlCadastro" />
 
-					<p:commandButton value="Imprimir" />
+					<p:commandButton value="Imprimir" icon="ui-icon-print" />
 				</f:facet>
 
 				<p:column headerText="Opções">
@@ -34,11 +35,14 @@
 				<p:column headerText="Nome" filterBy="#{cidade.nome}"
 					sortBy="#{cidade.nome}">
 					<h:outputText value="#{cidade.nome}" />
+
 				</p:column>
 
 				<p:column headerText="Estado" filterBy="#{cidade.estado.nome}"
 					sortBy="#{cidade.estado.nome}">
 					<h:outputText value="#{cidade.estado.nome}" />
+					<h:outputText value=" - " />
+					<h:outputText value="#{cidade.estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="CEP" filterBy="#{cidade.cep}"
@@ -57,7 +61,15 @@
 					value="#{cidadeBean.cidade.nome}" />
 
 				<p:outputLabel value="Estado:" />
-				<p:selectOneMenu filter="true" effect="highlight" />
+				<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}"
+					converter="omnifaces.SelectItemsConverter" effect="highlight">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Informe um estado" />
+					<f:selectItems value="#{cidadeBean.estados}" var="estado"
+						itemLabel="#{estado.nome} - #{estado.sigla}"
+						itemValue="#{estado.id}" />
+
+				</p:selectOneMenu>
 
 				<p:outputLabel value="CEP:" />
 				<p:inputNumber maxlength="8" size="8"
@@ -69,21 +81,16 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" cellpadding="5">
-				<p:commandButton value="Salvar" icon="ui-icon-circle-check" />
+				<p:commandButton value="Salvar" icon="ui-icon-circle-check"
+					actionListener="#{cidadeBean.salvar}"
+					update=":mensagem :formCadastro:pnlCadastro :listagem:tabela" />
 
-				<p:commandButton value="Fechar" icon="ui-icon-circle-close" />
+				<p:commandButton value="Fechar" icon="ui-icon-circle-close"
+					oncomplete="PF('dialogo').hide();" />
 
 			</h:panelGrid>
-
-
 		</h:form>
-
-
 	</p:dialog>
-
-
-
-
 </h:body>
 </html>
 

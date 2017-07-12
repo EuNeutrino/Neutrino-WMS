@@ -47,6 +47,13 @@
 			<version>5.1.42</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.primefaces.extensions/all-themes -->
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.8</version>
+			<type>pom</type>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -69,11 +76,12 @@
 			<version>6.0</version>
 		</dependency>
 
+
 		<!-- https://mvnrepository.com/artifact/org.omnifaces/omnifaces -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
-			<version>1.14.1</version>
+			<version>1.11</version>
 		</dependency>
 
 	</dependencies>

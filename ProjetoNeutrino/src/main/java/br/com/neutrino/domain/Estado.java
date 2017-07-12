@@ -15,42 +15,42 @@ import javax.persistence.Table;
 @Table(name = "tab_estado", schema = "neutrino")
 public class Estado extends EntidadeGenerica {
 
-    @Column(length = 50, nullable = false)
-    private String nome;
+	@Column(length = 50, nullable = false)
+	private String nome;
 
-    @Column(length = 2, nullable = false, unique = true)
-    private String sigla;
+	@Column(length = 2, nullable = false, unique = true)
+	private String sigla;
 
-    @OneToMany(mappedBy = "estado")
-    private List<Cidade> cidade;
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidade;
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getSigla() {
-        return sigla;
-    }
+	public String getSigla() {
+		return sigla;
+	}
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
 
-    public List<Cidade> getCidade() {
-        return cidade;
-    }
+	public List<Cidade> getCidade() {
+		return cidade;
+	}
 
-    public void setCidade(List<Cidade> cidade) {
-        this.cidade = cidade;
-    }
-
-    @Override
-    public String toString() {
-        return cidade.toString();
-    }
-
+	public void setCidade(List<Cidade> cidade) {
+		this.cidade = cidade;
+	}
+	@Override
+	public String toString() {
+		System.out.println("entro no toSTring!!!!!!!!!!!!!!!!!!!");
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+		
+	}
 }
