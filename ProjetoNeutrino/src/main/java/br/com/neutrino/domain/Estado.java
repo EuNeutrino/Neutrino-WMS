@@ -47,10 +47,5 @@ public class Estado extends EntidadeGenerica {
 	public void setCidade(List<Cidade> cidade) {
 		this.cidade = cidade;
 	}
-	@Override
-	public String toString() {
-		System.out.println("entro no toSTring!!!!!!!!!!!!!!!!!!!");
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
-		
-	}
+	
 }

@@ -28,7 +28,12 @@
 				<p:column headerText="Opções">
 					<p:commandButton icon="ui-icon-trash" />
 
-					<p:commandButton icon="ui-icon-pencil" />
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{cidadeBean.editar}"
+						update=":mensagem :formCadastro:pnlCadastro"
+						oncomplete="PF('dialogo').show();">
+						<f:attribute name="cidadeSelecionado" value="#{cidade}" />
+					</p:commandButton>
 
 				</p:column>
 
@@ -66,8 +71,7 @@
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Informe um estado" />
 					<f:selectItems value="#{cidadeBean.estados}" var="estado"
-						itemLabel="#{estado.nome} - #{estado.sigla}"
-						itemValue="#{estado.id}" />
+						itemLabel="#{estado.nome} - #{estado.sigla}" itemValue="#{estado}" />
 
 				</p:selectOneMenu>
 

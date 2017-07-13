@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -89,5 +90,16 @@ public class CidadeBean implements Serializable {
 			Messages.addGlobalError("Houve um erro ao tentar salvar a cidade, contate o suporte!");
 		}
 
+	}
+
+	public void editar(ActionEvent evento) {
+		try {
+			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionado");
+			estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar();
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Houve um erro ao tentar listar as estados, contate o suporte!");
+			erro.printStackTrace();
+		}
 	}
 }
