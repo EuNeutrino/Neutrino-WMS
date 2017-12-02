@@ -87,7 +87,7 @@ public class CidadeBean implements Serializable {
 			Messages.addGlobalInfo("Cidadae salvo com sucesso!");
 		} catch (RuntimeException erro) {
 			erro.printStackTrace();
-			Messages.addGlobalError("Houve um erro ao tentar salvar a cidade, contate o suporte!");
+			Messages.addGlobalError("Houve um problema ao tentar salvar a cidade, contate o suporte!");
 		}
 
 	}
@@ -98,8 +98,22 @@ public class CidadeBean implements Serializable {
 			estadoDAO = new EstadoDAO();
 			estados = estadoDAO.listar();
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Houve um erro ao tentar listar as estados, contate o suporte!");
+			Messages.addGlobalError("Houve um problema ao tentar listar as estados, contate o suporte!");
 			erro.printStackTrace();
 		}
 	}
+
+	public void excluir(ActionEvent evento) {
+		cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionado");
+		try {
+			cidadeDAO = new CidadeDAO();
+			cidadeDAO.excluir(cidade);
+			cidades = cidadeDAO.listar();
+			Messages.addGlobalInfo("Cidade excluido com sucesso!");
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Houve um problema ao tentar excluir a cidade, contate o suporte!");
+			erro.printStackTrace();
+		}
+	}
+
 }

@@ -28,8 +28,8 @@
 						actionListener="#{estadoBean.excluir}"
 						update=":mensagem :formListagem:table">
 
-						<p:confirm header="Confirmação"
-							message="Deseja excluir o estado: #{estado.nome} ?" />
+						<p:confirm header="Confirma a exclusão do estado?"
+							message="#{estado.nome}?" />
 
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
 					</p:commandButton>
@@ -70,10 +70,14 @@
 			<h:panelGrid id="pnlCadastro" columns="2" cellpadding="5">
 				<p:outputLabel value="Nome:" />
 				<p:inputText maxlength="50" size="30"
-					value="#{estadoBean.estado.nome}" />
+					value="#{estadoBean.estado.nome}"
+					converter="omnifaces.ToUpperCaseConverter" />
+
 				<p:outputLabel value="Sigla:" />
 				<p:inputText maxlength="2" size="10"
-					value="#{estadoBean.estado.sigla}" />
+					value="#{estadoBean.estado.sigla}"
+					converter="omnifaces.ToUpperCaseConverter" />
+
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" cellpadding="7">
