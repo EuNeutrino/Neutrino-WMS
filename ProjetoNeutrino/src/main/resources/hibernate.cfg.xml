@@ -24,6 +24,7 @@
 		<mapping class="br.com.neutrino.domain.Estado" />
 		<mapping class="br.com.neutrino.domain.Cidade" />
 		<mapping class="br.com.neutrino.domain.Unidade" />
+		<mapping class="br.com.neutrino.domain.Pessoa" />
 
 
 	</session-factory>
